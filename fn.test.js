@@ -97,3 +97,33 @@ test('에러 발생하나?', () => {
 test('xx에러 발생하나?', () => {
   expect(() => fn.throwErr()).toThrow('xx');
 });
+
+/**
+ * 3. 비동기 테스트
+ */
+
+test('3초 후에 받아온 이름은 Mike이다.', (done) => {
+  const callback = (name) => {
+    expect(name).toBe('Mike');
+    done();
+  };
+  fn.getName(callback);
+});
+
+test('3초 후에 받아온 나이는 30이다.', () => {
+  return fn.getAge().then((age) => {
+    expect(age).toBe(30);
+  });
+});
+
+test('3초 후에 받아온 나이는 30이다.', () => {
+  return expect(fn.getAge()).resolves.toBe(30);
+});
+
+test('3초 후에 받아온 나이는 30이다.', async () => {
+  expect(await fn.getAge()).toBe(30);
+});
+
+test('3초 후에 받아온 나이는 30이다.', async () => {
+  await expect(fn.getAge()).resolves.toBe(30);
+});
