@@ -127,3 +127,15 @@ test('3초 후에 받아온 나이는 30이다.', async () => {
 test('3초 후에 받아온 나이는 30이다.', async () => {
   await expect(fn.getAge()).resolves.toBe(30);
 });
+
+/**
+ * 4. 하나의 테스트만
+ */
+
+test.only('0 + 1 = 1', () => {
+  expect(fn.add(0, 1)).toBe(1);
+});
+
+test.skip('0 + 1 = 1', () => {
+  expect(fn.add(0, 1)).toBe(1);
+});
